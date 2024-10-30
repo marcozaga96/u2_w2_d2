@@ -16,13 +16,13 @@ public class BlogPostController {
     private BlogPostService blogPostService;
 
     @GetMapping
-    public List<BlogPost> getAutori() {
+    public List<BlogPost> getBlogPOst() {
         return blogPostService.getAllBlogPostList();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BlogPost createAutore(@RequestBody BlogPostPayload body) {
+    public BlogPost createBlogPOst(@RequestBody BlogPostPayload body) {
         return blogPostService.saveBlogPost(body);
     }
 

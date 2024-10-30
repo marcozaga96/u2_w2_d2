@@ -30,4 +30,5 @@ public class BlogPost {
         this.tempoDiLettura = tempoDiLettura;
     }
 
+
 }

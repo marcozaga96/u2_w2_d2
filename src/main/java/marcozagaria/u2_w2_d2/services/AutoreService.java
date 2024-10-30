@@ -14,6 +14,9 @@ public class AutoreService {
     @Autowired
     private AutoreRepository autoreRepository;
 
+    public List<Autore> getAllAutoreList() {
+        return autoreRepository.findAll();
+    }
 
     public Autore saveAutore(AutorePayload body) {
         Autore newAutore = new Autore(body.getNome(), body.getCognome(), body.getEmail(), body.getDataDiNascita());
@@ -21,9 +24,6 @@ public class AutoreService {
         return autoreRepository.save(newAutore);
     }
 
-    public List<Autore> getAllAutoreList() {
-        return autoreRepository.findAll();
-    }
 
     public Autore cercaId(int id) {
 
