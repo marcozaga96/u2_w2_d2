@@ -4,10 +4,9 @@ import marcozagaria.u2_w2_d2.entities.BlogPost;
 import marcozagaria.u2_w2_d2.payloads.BlogPostPayload;
 import marcozagaria.u2_w2_d2.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/blogPost")
@@ -16,8 +15,9 @@ public class BlogPostController {
     private BlogPostService blogPostService;
 
     @GetMapping
-    public List<BlogPost> getBlogPOst() {
-        return blogPostService.getAllBlogPostList();
+    public Page<BlogPost> getBlogPOst(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size,
+                                      @RequestParam(defaultValue = "id") String sortBy) {
+        return blogPostService.getAllBlogPostList(page, size, sortBy);
     }
 
     @PostMapping

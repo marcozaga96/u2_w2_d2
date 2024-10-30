@@ -4,10 +4,9 @@ import marcozagaria.u2_w2_d2.entities.Autore;
 import marcozagaria.u2_w2_d2.payloads.AutorePayload;
 import marcozagaria.u2_w2_d2.services.AutoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /* *************************************************** USERS CRUD ****************************************************
 1. GET http://localhost:3001/users
@@ -26,8 +25,10 @@ public class AutoreController {
     private AutoreService autoreService;
 
     @GetMapping
-    public List<Autore> getAutori() {
-        return autoreService.getAllAutoreList();
+    public Page<Autore> getAutori(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size,
+                                  @RequestParam(defaultValue = "id") String sortBy) {
+        // Mettiamo dei valori di default per far si che non ci siano errori se il client non ci invia uno dei query parameters
+        return autoreService.getAllAutoreList(page, size, sortBy);
     }
 
     @PostMapping

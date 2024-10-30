@@ -7,9 +7,12 @@ import marcozagaria.u2_w2_d2.payloads.BlogPostPayload;
 import marcozagaria.u2_w2_d2.repositories.AutoreRepository;
 import marcozagaria.u2_w2_d2.repositories.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -20,8 +23,10 @@ public class BlogPostService {
     @Autowired
     AutoreRepository autoreRepository;
 
-    public List<BlogPost> getAllBlogPostList() {
-        return blogPostRepository.findAll();
+    public Page<BlogPost> getAllBlogPostList(int page, int size, String sortBy) {
+        if (size > 100) size = 100;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        return blogPostRepository.findAll(pageable);
     }
 
     public BlogPost saveBlogPost(BlogPostPayload body) {
