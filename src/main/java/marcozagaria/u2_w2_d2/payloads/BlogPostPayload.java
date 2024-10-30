@@ -14,4 +14,5 @@ public class BlogPostPayload {
     private String titolo;
     private String contenuto;
     private String tempoDiLettura;
+    private int autore_id;
 }

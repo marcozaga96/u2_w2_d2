@@ -1,16 +1,14 @@
 package marcozagaria.u2_w2_d2.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "blogPost")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class BlogPost {
     @Id
     @GeneratedValue()
